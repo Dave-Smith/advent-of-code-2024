@@ -41,3 +41,33 @@ func TestFromStringTrim(t *testing.T) {
 		}
 	})
 }
+
+func TestAbsPositive(t *testing.T) {
+	t.Run("Positive in returns a positive", func(t *testing.T) {
+		want := 10
+		actual := Abs(10)
+		if want != actual {
+			t.Fatalf("Abs(10): want: %d, got: %d", want, actual)
+		}
+	})
+}
+
+func TestAbsNegative(t *testing.T) {
+	t.Run("Positive in returns a positive", func(t *testing.T) {
+		want := 11
+		actual := Abs(-11)
+		if want != actual {
+			t.Fatalf("Abs(10): want: %d, got: %d", want, actual)
+		}
+	})
+}
+
+func TestAbsZero(t *testing.T) {
+	t.Run("Positive in returns a positive", func(t *testing.T) {
+		want := 0
+		actual := Abs(0)
+		if want != actual {
+			t.Fatalf("Abs(10): want: %d, got: %d", want, actual)
+		}
+	})
+}

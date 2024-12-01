@@ -7,7 +7,7 @@ import (
 )
 
 func ReadLines(filename string) []string {
-	file, err := os.Open("./input.txt")
+	file, err := os.Open(filename)
 	if err != nil {
 		panic(err)
 	}
