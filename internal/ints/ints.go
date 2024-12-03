@@ -21,6 +21,16 @@ func FromString(number string) int {
 	return val
 }
 
+func SliceFromString(numbers string) []int {
+	nums := []int{}
+	for _, v := range strings.Fields(numbers) {
+		if num, err := strconv.Atoi(v); err == nil {
+			nums = append(nums, num)
+		}
+	}
+	return nums
+}
+
 func Abs(n int) int {
 	if n > 0 {
 		return n

@@ -1,6 +1,9 @@
 package ints
 
-import "testing"
+import (
+	"slices"
+	"testing"
+)
 
 func TestSum(t *testing.T) {
 	t.Run("Sum all ints in slice", func(t *testing.T) {
@@ -38,6 +41,16 @@ func TestFromStringTrim(t *testing.T) {
 		actual := FromString(" 10 ")
 		if want != actual {
 			t.Fatalf(`FromString("10"): want: %d, got: %d`, want, actual)
+		}
+	})
+}
+
+func TestSliceFromString(t *testing.T) {
+	t.Run("Returns a slice a ints from a string", func(t *testing.T) {
+		want := []int{1, 2, 3, 4, 5, 11}
+		actual := SliceFromString("1 2 3 4 5 11")
+		if slices.Compare(want, actual) != 0 {
+			t.Fatalf(`SliceFromString("1 2 3 4 5 11"): want: %v, got: %v`, want, actual)
 		}
 	})
 }
