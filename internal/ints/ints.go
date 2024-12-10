@@ -1,6 +1,7 @@
 package ints
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 )
@@ -11,6 +12,14 @@ func Sum(numbers []int) int {
 		sum += numbers[i]
 	}
 	return sum
+}
+
+func MultiplyAll(numbers []int) int64 {
+	t := int64(1)
+	for i := 0; i < len(numbers); i++ {
+		t *= int64(numbers[i])
+	}
+	return t
 }
 
 func FromString(number string) int {
@@ -59,4 +68,69 @@ func Includes(nums []int, num int) bool {
 		}
 	}
 	return false
+}
+
+func Includes64(nums []int64, num int64) bool {
+	for i := 0; i < len(nums); i++ {
+		if nums[i] == num {
+			return true
+		}
+	}
+	return false
+}
+
+func IncludesAny64(a, b []int64) bool {
+	var empty struct{}
+	bMap := make(map[int64]struct{})
+	for i := 0; i < len(b); i++ {
+		bMap[b[i]] = empty
+	}
+
+	for i := 0; i < len(a); i++ {
+		if _, ok := bMap[a[i]]; ok {
+			return true
+		}
+	}
+	return false
+}
+
+func FromSubstring(str string, from int, til int) int64 {
+	val, err := strconv.ParseInt(str[from:til], 10, 64)
+	if err != nil {
+		panic(err)
+	}
+	return val
+}
+func FindFactors(n int64) []int64 {
+	factors := []int64{}
+	for i := int64(1); i <= n; i++ {
+		if n%i == 0 && i != 1 && i != n {
+			factors = append(factors, i)
+		}
+	}
+	return factors
+}
+
+func Concat(a, b int) int {
+	v, e := strconv.Atoi(fmt.Sprintf("%d%d", a, b))
+	if e != nil {
+		panic(e)
+	}
+	return v
+}
+
+func Concat64(a, b int64) int64 {
+	v, e := strconv.ParseInt(fmt.Sprintf("%d%d", a, b), 10, 64)
+	if e != nil {
+		panic(e)
+	}
+	return v
+}
+
+func GetLastDigit(num int) int {
+	return (num / 10) % 10
+}
+
+func GetLastTwoDigits(num int) int {
+	return (num / 100) % 100
 }
